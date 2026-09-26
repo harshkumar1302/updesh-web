@@ -12,6 +12,10 @@ import { MyEnquiriesPage } from './pages/MyEnquiriesPage';
 import { ShortlistPage } from './pages/ShortlistPage';
 import { AdminApprovalsPage } from './pages/AdminApprovalsPage';
 import { AdminLeadsPage } from './pages/AdminLeadsPage';
+import { AdminDashboardPage } from './pages/AdminDashboardPage';
+import { AdminUsersPage } from './pages/AdminUsersPage';
+import { AdminPropertiesPage } from './pages/AdminPropertiesPage';
+import { SellerPropertyLeadsPage } from './pages/SellerPropertyLeadsPage';
 import { ActivityPage } from './pages/ActivityPage';
 import { MenuPage } from './pages/MenuPage';
 import { NotFoundPage, MaintenancePage, StaticPage } from './pages/MiscPages';
@@ -35,13 +39,17 @@ export function App() {
 
         <Route path="post" element={<ProtectedRoute roles={['seller', 'admin']}><PostPropertyPage /></ProtectedRoute>} />
         <Route path="dashboard/listings" element={<ProtectedRoute roles={['seller', 'admin']}><MyListingsPage /></ProtectedRoute>} />
+        <Route path="dashboard/property-leads" element={<ProtectedRoute roles={['seller', 'admin']}><SellerPropertyLeadsPage /></ProtectedRoute>} />
         <Route path="dashboard/enquiries" element={<ProtectedRoute><MyEnquiriesPage /></ProtectedRoute>} />
         <Route path="dashboard/shortlist" element={<ProtectedRoute><ShortlistPage /></ProtectedRoute>} />
         <Route path="dashboard" element={<Navigate to="/dashboard/listings" replace />} />
 
+        <Route path="admin/dashboard" element={<ProtectedRoute roles={['admin']}><AdminDashboardPage /></ProtectedRoute>} />
+        <Route path="admin/users" element={<ProtectedRoute roles={['admin']}><AdminUsersPage /></ProtectedRoute>} />
+        <Route path="admin/properties" element={<ProtectedRoute roles={['admin']}><AdminPropertiesPage /></ProtectedRoute>} />
         <Route path="admin/approvals" element={<ProtectedRoute roles={['admin']}><AdminApprovalsPage /></ProtectedRoute>} />
         <Route path="admin/leads" element={<ProtectedRoute roles={['admin']}><AdminLeadsPage /></ProtectedRoute>} />
-        <Route path="admin" element={<Navigate to="/admin/approvals" replace />} />
+        <Route path="admin" element={<Navigate to="/admin/dashboard" replace />} />
 
         <Route path="*" element={<NotFoundPage />} />
       </Route>

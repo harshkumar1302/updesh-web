@@ -80,11 +80,17 @@ export function MenuPage() {
   }
 
   const selling: MenuItem[] = isSeller
-    ? [{ label: 'My Listings', sub: 'Manage your portfolio', to: '/dashboard/listings', icon: 'listings' }]
+    ? [
+        { label: 'My Listings', sub: 'Manage your portfolio', to: '/dashboard/listings', icon: 'listings' },
+        { label: 'Enquiries Received', sub: 'Messages from buyers', to: '/dashboard/property-leads', icon: 'reports' },
+      ]
     : [];
 
   const admin: MenuItem[] = isAdmin
     ? [
+        { label: 'Dashboard', sub: 'Overview and stats', to: '/admin/dashboard', icon: 'reports' },
+        { label: 'Users', sub: 'Manage users', to: '/admin/users', icon: 'support' },
+        { label: 'Properties', sub: 'Manage properties', to: '/admin/properties', icon: 'listings' },
         { label: 'Pending Approvals', sub: 'Review submissions', to: '/admin/approvals', icon: 'approvals' },
         { label: 'Leads Inbox', sub: 'Viewing requests and callbacks', to: '/admin/leads', icon: 'reports' },
       ]

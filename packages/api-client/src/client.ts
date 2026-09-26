@@ -185,9 +185,28 @@ export function createApiClient(config: ApiClientConfig) {
       mySaved: () => request<{ properties: import('@updesh/shared-types').Property[] }>('/users/me/saved'),
       toggleSaved: (propertyId: string) =>
         request<{ saved: boolean }>(`/users/me/saved/${propertyId}`, { method: 'POST' }),
+      propertyLeads: () => request<{ leads: import('@updesh/shared-types').PropertyLead[] }>('/users/me/property-leads'),
     },
 
     admin: {
+      dashboard: () => request<import('@updesh/shared-types').AdminDashboardStats>('/admin/dashboard'),
+      users: (params?: { role?: string }) =>
+        request<import('@updesh/shared-types').AdminUsersResponse>(
+          `/admin/users${buildQuery(params ?? {})}`
+        ),
+      updateUserRole: (id: string, role: import('@updesh/shared-types').UserRole) =>
+        request<{ user: import('@updesh/shared-types').AdminUser }>(`/admin/users/${id}/role`, {
+          method: 'PATCH',
+          body: JSON.stringify({ role }),
+        }),
+      allProperties: (params?: { status?: string; city?: string; sort?: string; limit?: number; cursor?: string }) =>
+        request<import('@updesh/shared-types').AdminPropertiesResponse>(
+          `/admin/properties${buildQuery(params ?? {})}`
+        ),
+      toggleFeatured: (id: string) =>
+        request<{ property: import('@updesh/shared-types').Property }>(`/admin/properties/${id}/featured`, {
+          method: 'PATCH',
+        }),
       pendingListings: () => request<{ listings: import('@updesh/shared-types').Property[]; total: number }>('/admin/listings/pending'),
       updateListing: (id: string, action: 'approve' | 'reject', rejectionReason?: string) =>
         request<{ property: import('@updesh/shared-types').Property }>(`/admin/listings/${id}`, {

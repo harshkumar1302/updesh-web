@@ -8,7 +8,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@updesh/shared-types": "workspace:*"
+    "@updesh/shared-types": "file:../shared-types"
   },
   "devDependencies": {
     "typescript": "^5.7.2"
