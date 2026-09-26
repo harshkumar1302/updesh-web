@@ -13,9 +13,9 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@tanstack/react-query": "^5.62.8",
-    "@updesh/api-client": "workspace:*",
-    "@updesh/design-tokens": "workspace:*",
-    "@updesh/shared-types": "workspace:*",
+    "@updesh/api-client": "file:./packages/api-client",
+    "@updesh/design-tokens": "file:./packages/design-tokens",
+    "@updesh/shared-types": "file:./packages/shared-types",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-helmet-async": "^2.0.5",
